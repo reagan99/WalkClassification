@@ -1,0 +1,59 @@
+<!-- templates/video.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Processing Results</title>
+    <style>
+        /* CSS styles go here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        .result-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .model-result {
+            width: 30%;
+            margin: 10px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Video Processing Results</h1>
+    <div class="result-container">
+        {% for model, result in predictions.items() %}
+            <div class="model-result">
+                <h2>Model {{ model }}</h2>
+                <p>Prediction: {{ result.prediction }}</p>
+                <p>Percentage: {{ result.percentage }}%</p>
+                <img src="{{ url_for('static', path=result.image) }}" alt="Sample Image">
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
